@@ -14,12 +14,14 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FileUpload from "react-mui-fileuploader";
-const S3_BUCKET = "digital-store-abdulwaheed";
-const REGION = "us-east-1";
+const S3_BUCKET = process.env.REACT_APP_BUCKET_NAME;
+const REGION = "us-east-2";
 AWS.config.update({
-  accessKeyId: "AKIA3CQZEWWEBERSUMKZ",
-  secretAccessKey: "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",
+  accessKeyId: process.env.REACT_APP_ACCESSKEY,
+  secretAccessKey: process.env.REACT_APP_SECRETKEY,
 });
+console.log(process.env.REACT_APP_ACCESSKEY);
+console.log(process.env.REACT_APP_SECRETKEY);
 const myBucket = new AWS.S3({
   params: { Bucket: S3_BUCKET },
   region: REGION,
@@ -49,6 +51,7 @@ export default function AddStory() {
       Key: selectedFile[0].name,
     };
     toast("FIle Uploading");
+    console.log(process.env.REACT_APP_BUCKET_NAME,S3_BUCKET)
     myBucket
       .putObject(params)
       .on("httpUploadProgress", (evt) => {
@@ -65,7 +68,7 @@ export default function AddStory() {
           toast("File Uploaded");
           setSelectedFile([]);
           setImageUrl(
-            "https://digital-store-abdulwaheed.s3.amazonaws.com/" +
+            "https://digitalstory-bucket.s3.amazonaws.com/" +
               selectedFile[0].name
           );
         }

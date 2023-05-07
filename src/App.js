@@ -14,6 +14,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
+        {console.log(process.env.REACT_APP_BUCKET_NAME)}
         <ThemeProvider theme={theme}>
           <Routes>
             <Route element={<ProtectedRoute />}>
@@ -21,6 +22,7 @@ function App() {
               <Route path="/stories" element={<Stories />} />
               <Route path="/stories/:id" element={<SingleStory />} />
             </Route>
+            
             <Route path="/" element={<Navigate to="/user/register" />} />
             <Route path="/user/register" element={<Register />} />
             <Route path="/user/login" element={<Login />} />
