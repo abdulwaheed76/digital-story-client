@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-const backendURL = "http://localhost:3000";
+const backendURL = "https://digital-stories-ten.vercel.app";
 
 const initialState = {
   loading: false,

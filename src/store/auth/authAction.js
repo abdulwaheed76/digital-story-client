@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const backendURL = "http://localhost:3000"
+const backendURL = "https://digital-stories-ten.vercel.app"
 
 export const registerUser = createAsyncThunk(
   "auth/register",
